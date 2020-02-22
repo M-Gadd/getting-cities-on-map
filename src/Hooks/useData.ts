@@ -39,7 +39,7 @@ export const useData = (city: string): UseDataReturn => {
         let citiesHere: any = [];
 
         const citiesAround = await axios.get(
-          `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}&lng=${lng}&cities=cities15000&radius=200&maxRows=4&username=${username}`,
+          `https://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}&lng=${lng}&cities=cities15000&radius=200&maxRows=4&username=${username}`,
         );
 
         if (citiesAround) {
