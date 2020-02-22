@@ -41,15 +41,6 @@ const Home: React.SFC<HomeProps> = () => {
           >
             Search
           </Button>
-          <Button
-            onClick={() => {
-              setMapInfo(location);
-              setLocation("");
-            }}
-            className="ml-2 btn-danger"
-          >
-            Get Current
-          </Button>
         </div>
 
         <div>{mapInfo && <Map location={mapInfo} />}</div>
