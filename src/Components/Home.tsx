@@ -11,29 +11,6 @@ const Home: React.SFC<HomeProps> = () => {
   const [mapInfo, setMapInfo] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
 
-  let initialLat;
-  let initialLng;
-
-  const getNavigator = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        initialLat = position.coords.latitude;
-        initialLng = position.coords.longitude;
-        getCurrent(initialLat, initialLng);
-      });
-    }
-  };
-
-  const getCurrent = async (lat: any, lng: any) => {
-    const citiesAround = await axios.get(
-      `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}&lng=${lng}&cities=cities15000&radius=200&maxRows=4&username=${"mgad"}`,
-    );
-    if (citiesAround) {
-      console.log("HERE", citiesAround.data.geonames[0].name);
-      setCurrentLocation(citiesAround.data.geonames[0].name);
-    }
-  };
-
   return (
     <Row
       onKeyDown={(e) => {
