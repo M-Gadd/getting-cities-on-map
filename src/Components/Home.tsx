@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Row, Col, Button } from "reactstrap";
 import Map from "./Map";
-import axios from "axios";
 
 // import useAddressPredictions from "../Hooks/useAddessPredictions";
 export interface HomeProps {}
@@ -9,7 +8,6 @@ export interface HomeProps {}
 const Home: React.SFC<HomeProps> = () => {
   const [location, setLocation] = useState("");
   const [mapInfo, setMapInfo] = useState("");
-  const [currentLocation, setCurrentLocation] = useState("");
 
   return (
     <Row
@@ -27,7 +25,7 @@ const Home: React.SFC<HomeProps> = () => {
             value={location}
             onChange={(event) => {
               setMapInfo("");
-              setCurrentLocation("");
+
               setLocation(event?.target.value);
             }}
             type="text"
@@ -45,7 +43,6 @@ const Home: React.SFC<HomeProps> = () => {
           </Button>
           <Button
             onClick={() => {
-              getNavigator();
               setMapInfo(location);
               setLocation("");
             }}
@@ -55,11 +52,7 @@ const Home: React.SFC<HomeProps> = () => {
           </Button>
         </div>
 
-        <div>
-          {(mapInfo || currentLocation) && (
-            <Map location={mapInfo ? mapInfo : currentLocation ? currentLocation : ""} />
-          )}
-        </div>
+        <div>{mapInfo && <Map location={mapInfo} />}</div>
       </Col>
     </Row>
   );
